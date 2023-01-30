@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,9 +12,34 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AndroidERestaurant"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Loader"
+            android:exported="false" />
+        <activity
+            android:name=".BasketAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".BasketActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Basket"
+            android:exported="false" />
+        <activity
+            android:name=".PhotoSlideFragment"
+            android:exported="false" />
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

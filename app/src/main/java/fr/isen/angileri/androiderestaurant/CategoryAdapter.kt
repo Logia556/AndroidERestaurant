@@ -14,7 +14,7 @@ import fr.isen.angileri.androiderestaurant.data.Dish
 import fr.isen.angileri.androiderestaurant.databinding.DishCellBinding
 
 class CategoryAdapter(private val entries: List<Dish>,
-                      private val cellClickListener: DishCellClickListener):
+                      private val cellClickListener: (Dish) -> Unit)  :
     RecyclerView.Adapter<CategoryAdapter.DishViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
         return DishViewHolder(DishCellBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -28,7 +28,7 @@ class CategoryAdapter(private val entries: List<Dish>,
             Picasso.get().load(entries[position].images[0]).into(holder.dishImageView);
         }
         holder.layout.setOnClickListener {
-            cellClickListener.onCellClickListener(entries[position])
+            cellClickListener(entries[position])
         }
     }
     override fun getItemCount(): Int {

@@ -11,7 +11,7 @@ class Basket (val items: MutableList<BasketItem>): AppCompatActivity(), Serializ
 
     var count: Int = 0
         get() {
-            if (this.items.count() > 0) {
+            if (this.items.isNotEmpty()) {
                 return this.items
                     .map { it.itemCount }
                     .reduce { acc, i -> acc + i }

@@ -34,18 +34,24 @@ enum class  ItemType{
 }
 
 
-class CategoryActivity : BaseActivity(), DishCellClickListener {
+class CategoryActivity : BaseActivity() {
 
     private lateinit var binding: ActivityCategoryBinding
+    private lateinit var adapter: CategoryAdapter
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        adapter = CategoryAdapter(mutableListOf(), this::onCellClickListener)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        Log.d("adapter", "adapter init")
+
 
         val title = binding.categoryTitleTextView
         val selectedCategory: ItemType? = intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
-
+        Log.d("val", "val init")
         binding.swipeLayout.setOnRefreshListener {
             resetCache()
             loadList(selectedCategory)
@@ -57,8 +63,9 @@ class CategoryActivity : BaseActivity(), DishCellClickListener {
 
     private fun loadList(category: ItemType?) {
         resultFromCache()?.let {
-            onSuccess(parseResult(it, category))
+            /*onSuccess(*/parseResult(it, category)
         } ?: run {
+            Log.d("run", "run init")
             val loader = Loader()
             loader.show(this, "Chargement du menu")
             val queue = Volley.newRequestQueue(this)
@@ -73,12 +80,14 @@ class CategoryActivity : BaseActivity(), DishCellClickListener {
                     binding.swipeLayout.isRefreshing = false
                     cacheResult(response.toString())
                     loader.hide(this)
-                    onSuccess(parseResult(response.toString(), category))
+                    /*onSuccess(*/parseResult(response.toString(), category)
+                    Log.d("response", "response success")
                 },
                 Response.ErrorListener { error ->
                     loader.hide(this)
                     binding.swipeLayout.isRefreshing = false
                     onFailure(error)
+                    Log.d("response", "response error")
                 }
             )
             queue.add(request)
@@ -111,19 +120,19 @@ class CategoryActivity : BaseActivity(), DishCellClickListener {
         return items?.items
     }
 
-    private fun onSuccess(dishes: List<Dish>?) {
+    /*private fun onSuccess(dishes: List<Dish>?) {
         dishes?.let {
             // CellClickListener = this because this implements CellClickListener
             val adapter = CategoryAdapter(it, this)
             binding.recyclerView.layoutManager = LinearLayoutManager(this)
             binding.recyclerView.adapter = adapter
         }
-    }
+    }*/
     private fun onFailure(error: VolleyError) {
         Log.d("Request", error.toString())
     }
 
-    override fun onCellClickListener(data: Dish) {
+    fun onCellClickListener(data: Dish) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(PLAT, data)
         startActivity(intent)

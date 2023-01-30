@@ -1,15 +1,15 @@
 package fr.isen.angileri.androiderestaurant
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import fr.isen.angileri.androiderestaurant.data.Dish
 import fr.isen.angileri.androiderestaurant.databinding.ActivityDetailBinding
 
 
-class DetailActivity: BaseActivity() {
+class DetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private var imageCount = 0
@@ -39,9 +39,10 @@ class DetailActivity: BaseActivity() {
             updateUI()
         }
         binding.btnDecrement.setOnClickListener {
-            if (itemCount>1){
+            if (itemCount > 1) {
                 itemCount--
-                updateUI()}
+                updateUI()
+            }
         }
         binding.btnAddToCart.setOnClickListener {
             addToBasket(dish, itemCount)
@@ -86,6 +87,7 @@ class DetailActivity: BaseActivity() {
     private fun refreshMenu() {
         invalidateOptionsMenu() // refresh l'affichage du menu
     }
+
     private fun getCurrentDishCount(dish: Dish): Int {
         val basket = Basket.getBasket(this)
         val selectedDish = basket.items.firstOrNull {
@@ -96,6 +98,7 @@ class DetailActivity: BaseActivity() {
         }
         return 1
     }
+
     companion object {
         const val BASKET_COUNT = "BASKET_COUNT"
     }
@@ -103,6 +106,7 @@ class DetailActivity: BaseActivity() {
     private inner class PhotoSlideAdapter(fa: AppCompatActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = imageCount
 
-        override fun createFragment(position: Int): Fragment = PhotoSlideFragment(dish.images[position])
+        override fun createFragment(position: Int): Fragment =
+            PhotoSlideFragment(dish.images[position])
     }
 }

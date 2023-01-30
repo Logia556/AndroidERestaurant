@@ -2,12 +2,11 @@ package fr.isen.angileri.androiderestaurant
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.google.gson.GsonBuilder
 import java.io.File
 import java.io.Serializable
 
-class Basket (val items: MutableList<BasketItem>): AppCompatActivity(), Serializable {
+class Basket(val items: MutableList<BasketItem>) : AppCompatActivity(), Serializable {
 
     var count: Int = 0
         get() {
@@ -29,6 +28,7 @@ class Basket (val items: MutableList<BasketItem>): AppCompatActivity(), Serializ
             items.add(item)
         }
     }
+
     fun clear() {
         items.clear()
     }
@@ -36,7 +36,8 @@ class Basket (val items: MutableList<BasketItem>): AppCompatActivity(), Serializ
     fun save(context: Context) {
         val jsonFile = File(context.cacheDir.absolutePath + BASKET_FILE)
         jsonFile.writeText(GsonBuilder().create().toJson(this))
-        val sharedPreferences = context.getSharedPreferences(USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences =
+            context.getSharedPreferences(USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putInt(BASKET_COUNT, count)
         editor.apply()
@@ -45,7 +46,7 @@ class Basket (val items: MutableList<BasketItem>): AppCompatActivity(), Serializ
     companion object {
         fun getBasket(context: Context): Basket {
             val jsonFile = File(context.cacheDir.absolutePath + BASKET_FILE)
-            if(jsonFile.exists()) {
+            if (jsonFile.exists()) {
                 val json = jsonFile.readText()
                 return GsonBuilder().create().fromJson(json, Basket::class.java)
             }

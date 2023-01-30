@@ -31,7 +31,8 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun getItemsCount(): Int {
-        val sharedPreferences = getSharedPreferences(Basket.USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences =
+            getSharedPreferences(Basket.USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
         return sharedPreferences.getInt(Basket.BASKET_COUNT, 0)
     }
 }

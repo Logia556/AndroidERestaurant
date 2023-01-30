@@ -2,17 +2,9 @@ package fr.isen.angileri.androiderestaurant
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import android.util.Log
-import android.view.View
-import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.content.res.TypedArrayUtils.getString
-import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -27,7 +19,7 @@ import fr.isen.angileri.androiderestaurant.databinding.ActivityCategoryBinding
 import org.json.JSONObject
 
 
-enum class  ItemType{
+enum class ItemType {
     ENTREE,
     PLAT,
     DESSERT;
@@ -38,6 +30,7 @@ class CategoryActivity : BaseActivity() {
 
     private lateinit var binding: ActivityCategoryBinding
     private lateinit var adapter: CategoryAdapter
+
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +43,8 @@ class CategoryActivity : BaseActivity() {
 
 
         val title = binding.categoryTitleTextView
-        val selectedCategory: ItemType? = intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
+        val selectedCategory: ItemType? =
+            intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
         Log.d("val", "val init")
         binding.swipeLayout.setOnRefreshListener {
             resetCache()
@@ -132,22 +126,23 @@ class CategoryActivity : BaseActivity() {
         Log.d("Request", error.toString())
     }
 
-    fun onCellClickListener(data: Dish) {
+    private fun onCellClickListener(data: Dish) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(PLAT, data)
         startActivity(intent)
     }
 
     private fun getCategoryTitle(item: ItemType?): String {
-        return when(item) {
+        return when (item) {
             ItemType.ENTREE -> getString(R.string.entree)
             ItemType.PLAT -> getString(R.string.plat)
             ItemType.DESSERT -> getString(R.string.dessert)
             else -> ""
         }
     }
+
     private fun getCategoryTitleFr(item: ItemType?): String {
-        return when(item) {
+        return when (item) {
             ItemType.ENTREE -> getString(R.string.entree)
             ItemType.PLAT -> getString(R.string.plat)
             ItemType.DESSERT -> getString(R.string.dessert)

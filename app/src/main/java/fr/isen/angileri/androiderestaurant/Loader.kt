@@ -2,8 +2,6 @@ package fr.isen.angileri.androiderestaurant
 
 import android.app.Activity
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import fr.isen.angileri.androiderestaurant.databinding.ViewLoaderBinding

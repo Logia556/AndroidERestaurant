@@ -1,11 +1,9 @@
 package fr.isen.angileri.androiderestaurant
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -15,7 +13,7 @@ import com.android.volley.toolbox.Volley
 import fr.isen.angileri.androiderestaurant.databinding.ActivityBasketBinding
 import org.json.JSONObject
 
-class BasketActivity: AppCompatActivity(), BasketCellClickListener {
+class BasketActivity : AppCompatActivity(), BasketCellClickListener {
     private lateinit var binding: ActivityBasketBinding
     private lateinit var basket: Basket
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +38,7 @@ class BasketActivity: AppCompatActivity(), BasketCellClickListener {
         basket.save(this)
         reloadData()
     }
+
     private fun sendOrder(user_id: Int) {
         val message = basket.items.joinToString {
             it.dish.name + " " + it.itemCount

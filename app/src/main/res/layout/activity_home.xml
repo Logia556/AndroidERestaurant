@@ -7,14 +7,14 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/texteBienvenu"
+        android:id="@+id/introView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="4dp"
         android:text="bienvenu à la cuisine android"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/titreApplication"
+        app:layout_constraintBottom_toTopOf="@+id/title2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.042" />
 
     <Button
-        android:id="@+id/entree"
+        android:id="@+id/entriesTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="55dp"
@@ -30,26 +30,26 @@
         android:layout_marginBottom="28dp"
         android:text="entrées"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/plat"
+        app:layout_constraintBottom_toTopOf="@+id/dishesTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titreApplication" />
+        app:layout_constraintTop_toBottomOf="@+id/title2" />
 
     <Button
-        android:id="@+id/plat"
+        android:id="@+id/dishesTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="55dp"
         android:layout_marginEnd="55dp"
         android:layout_marginBottom="34dp"
         android:text="plats"
-        app:layout_constraintBottom_toTopOf="@+id/dessert"
+        app:layout_constraintBottom_toTopOf="@+id/dessertTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/entree" />
+        app:layout_constraintTop_toBottomOf="@+id/entriesTextView" />
 
     <Button
-        android:id="@+id/dessert"
+        android:id="@+id/dessertTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="55dp"
@@ -59,10 +59,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plat" />
+        app:layout_constraintTop_toBottomOf="@+id/dishesTextView" />
 
     <TextView
-        android:id="@+id/titreApplication"
+        android:id="@+id/title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -70,8 +70,18 @@
         android:text="AndroidERestaurant"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/entree"
+        app:layout_constraintBottom_toTopOf="@+id/entriesTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texteBienvenu" />
+        app:layout_constraintTop_toBottomOf="@+id/introView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="103dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/robot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,23 +17,23 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.entree.setOnClickListener {
+        binding.entriesTextView.setOnClickListener {
             Toast.makeText(this, "nouvelle page", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, ActivityChoix::class.java)
+            val intent = Intent(this, CategoryActivity::class.java)
             val pageentree = ""
             intent.putExtra("categorie", "pageentree")
             startActivity(intent)
         }
 
-        binding.plat.setOnClickListener {
-            val intent = Intent(this, ActivityChoix::class.java)
+        binding.dishesTextView.setOnClickListener {
+            val intent = Intent(this, CategoryActivity::class.java)
             val pageplat = ""
             intent.putExtra("categorie", "pageplat")
             startActivity(intent)
         }
 
-        binding.dessert.setOnClickListener {
-            val intent = Intent(this, ActivityChoix::class.java)
+        binding.dessertTextView.setOnClickListener {
+            val intent = Intent(this, CategoryActivity::class.java)
             val pagedessert = ""
             intent.putExtra("categorie", "pagedessert")
             startActivity(intent)
@@ -43,5 +43,15 @@ class HomeActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d("HomeActivity", "dead")
+    }
+
+    private fun statCategoryActivity(item: ItemType) {
+        val intent = Intent(this, CategoryActivity::class.java)
+        intent.putExtra(CATEGORY_NAME, item)
+        startActivity(intent)
+    }
+
+    companion object {
+        const val CATEGORY_NAME = "CATEGORY_NAME"
     }
 }
